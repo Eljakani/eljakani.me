@@ -1,0 +1,21 @@
+---
+import { Button } from '@/components/ui/button';
+import ThemeToggle from './ThemeToggle.astro';
+import { Github, Linkedin } from 'lucide-react';
+---
+
+<header class="py-4 flex justify-between items-center">
+  <nav class="hidden md:flex items-center space-x-4">
+    <Button variant="secondary" size="sm" className="rounded-full">Blog</Button>
+  </nav>
+  <h1 class="text-2xl font-bold font-alt">Eljakani<span class="text-point">.</span></h1>
+  <div class="flex items-center space-x-4">
+    <a href="#" class="text-muted-foreground hover:text-primary">
+      <Github className="w-6 h-6" />
+    </a>
+    <a href="#" class="text-muted-foreground hover:text-primary">
+      <Linkedin className="w-6 h-6" />
+    </a>
+    <ThemeToggle />
+  </div>
+</header>
