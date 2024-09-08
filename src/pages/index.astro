@@ -5,30 +5,20 @@ import Hero from '../components/Hero.astro';
 import Navigation from '../components/Navigation.astro';
 import Skills from '../components/Skills.astro';
 import Education from '@/components/Education.astro';
+import Experiences from "../components/Experiences.astro";
+import Projects from "../components/Projects.astro";
+import Footer from "../components/Footer";
 ---
 
-<Layout title="Yassine El Jakani - DevSecOps Engineer">
+<Layout title="Yassine El Jakani - Cyber Security Engineer">
   <div class="container mx-auto px-4">
     <Header />
     <Hero />
     <Navigation />
     <Skills />
     <Education />
-    <section id="experience" class="py-16 min-h-screen">
-      <h3 class="text-3xl font-bold mb-8">Experience</h3>
-      <!-- Add experience content here -->
-    </section>
-    <section id="projects" class="py-16 min-h-screen">
-      <h3 class="text-3xl font-bold mb-8">Projects</h3>
-      <!-- Add projects content here -->
-    </section>
-    <section id="certifications" class="py-16 min-h-screen">
-      <h3 class="text-3xl font-bold mb-8">Certifications</h3>
-      <!-- Add certifications content here -->
-    </section>
-    <section id="volunteering" class="py-16 min-h-screen">
-      <h3 class="text-3xl font-bold mb-8">Volunteering</h3>
-      <!-- Add volunteering content here -->
-    </section>
+    <Experiences />
+    <Projects />
+    <Footer client:load />
   </div>
 </Layout>

@@ -2,18 +2,21 @@
 import { Button } from '@/components/ui/button';
 import ThemeToggle from './ThemeToggle.astro';
 import { Github, Linkedin } from 'lucide-react';
+
 ---
 
-<header class="py-4 flex justify-between items-center">
+<header class="py-4 flex justify-between items-center" transition:persist>
   <nav class="hidden md:flex items-center space-x-4">
-    <Button variant="secondary" size="sm" className="rounded-full">Blog</Button>
+    <Button variant="secondary" size="sm" className="rounded-full">
+      <a href="https://blog.eljakani.me" target="_blank" rel="noopener dofollow">Blog</a>
+    </Button>
   </nav>
   <h1 class="text-2xl font-bold font-alt">Eljakani<span class="text-point">.</span></h1>
   <div class="flex items-center space-x-4">
-    <a href="#" class="text-muted-foreground hover:text-primary">
+    <a href="https://github.com/Eljakani" class="text-muted-foreground hover:text-primary"  target="_blank" rel="noopener dofollow" aria-label="Github">
       <Github className="w-6 h-6" />
     </a>
-    <a href="#" class="text-muted-foreground hover:text-primary">
+    <a href="https://linkedin/in/eljakaniyassine" class="text-muted-foreground hover:text-primary" target="_blank" rel="noopener dofollow" aria-label="Linkedin">
       <Linkedin className="w-6 h-6" />
     </a>
     <ThemeToggle />

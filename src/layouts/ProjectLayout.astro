@@ -1,0 +1,260 @@
+---
+import Layout from './Layout.astro';
+import { Icon } from 'astro-icon/components';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Image } from 'astro:assets';
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={`${frontmatter.name || 'Project'} | Yassine El Jakani`}>
+    <div class="container mx-auto px-4 py-16 max-w-4xl">
+        <Button variant="ghost" size="sm" asChild className="mb-8">
+            <a href="/#projects" class="flex items-center text-primary hover:text-primary/80 mb-8">
+                <Icon name="lucide:arrow-left" class="w-4 h-4 mr-2" />
+                Back to Projects
+            </a>
+        </Button>
+
+        <header class="mb-12">
+            <div class="flex items-center gap-4 mb-4">
+                {frontmatter.icon && (
+                        <div class="bg-primary/10 p-3 rounded-full" transition:name={`project-icon-${frontmatter.id}`}>
+                            <Icon  name={frontmatter.icon} class="w-8 h-8 text-primary" />
+                        </div>
+                )}
+                <h1 class="text-4xl font-bold text-foreground font-alt" transition:name={`project-name-${frontmatter.id}`}>{frontmatter.name || 'Project'}</h1>
+            </div>
+            {frontmatter.description && <p class="text-xl text-muted-foreground" transition:name={`project-desc-${frontmatter.id}`}>{frontmatter.description}</p>}
+        </header>
+
+        {frontmatter.image && (
+                <Image
+                        src={frontmatter.image}
+                        alt={`${frontmatter.name || 'Project'} featured image`}
+                        width={1200}
+                        height={630}
+                        transition:animate="fade"
+                        transition:name={`project-${frontmatter.id}`}
+                        class="w-full h-auto rounded-2xl shadow-lg mb-12"
+                />
+        )}
+
+        <div class="grid md:grid-cols-3 gap-8 mb-12">
+            <div class="md:col-span-2 space-y-8">
+                {frontmatter.overview && (
+                        <section>
+                            <h2 class="text-2xl font-semibold mb-4 font-alt">Overview</h2>
+                            <p class="text-muted-foreground">{frontmatter.overview}</p>
+                        </section>
+                )}
+
+                {frontmatter.features && frontmatter.features.length > 0 && (
+                        <section>
+                            <h2 class="text-2xl font-semibold mb-4 font-alt">Key Features</h2>
+                            <ul class="space-y-2">
+                                {frontmatter.features.map((feature) => (
+                                        <li class="flex items-start">
+                                            <Icon name="lucide:check-circle" class="w-5 h-5 text-primary mr-2 flex-shrink-0 mt-1" />
+                                            <span class="text-muted-foreground">{feature}</span>
+                                        </li>
+                                ))}
+                            </ul>
+                        </section>
+                )}
+
+                {frontmatter.process && (
+                        <section>
+                            <h2 class="text-2xl font-semibold mb-4 font-alt">Development Process</h2>
+                            <p class="text-muted-foreground">{frontmatter.process}</p>
+                        </section>
+                )}
+            </div>
+
+            <div class="space-y-8">
+                <section class="bg-muted/30 p-6 rounded-xl">
+                    <h2 class="text-xl font-semibold mb-4 font-alt">Project Details</h2>
+                    <div class="space-y-4">
+                        {frontmatter.date && (
+                                <div>
+                                    <h3 class="font-semibold text-sm uppercase text-muted-foreground">Date</h3>
+                                    <p class="text-foreground">{frontmatter.date}</p>
+                                </div>
+                        )}
+                        {frontmatter.category && (
+                                <div>
+                                    <h3 class="font-semibold text-sm uppercase text-muted-foreground font-alt">Category</h3>
+                                    <p class="text-foreground">{frontmatter.category}</p>
+                                </div>
+                        )}
+                        {frontmatter.team && (
+                                <div>
+                                    <h3 class="font-semibold text-sm uppercase text-muted-foreground font-alt">Team</h3>
+                                    <div class="flex flex-wrap gap-2 mt-1">
+                                    {frontmatter.team.map((member: { name: string; link: string }) => (
+                                            <a href={member.link} target="_blank" rel="noopener" class="text-sm flex items-center text-foreground py-0.5 px-1.5 bg-primary/10 rounded-full hover:bg-primary/20">
+                                                {member.name}
+                                            </a>
+                                    ))}
+                                    </div>
+                                </div>
+                        )}
+                        {frontmatter.client && (
+                                <div>
+                                    <h3 class="font-semibold text-sm uppercase text-muted-foreground font-alt">Client</h3>
+                                    <p class="text-foreground">{frontmatter.client}</p>
+                                </div>
+                        )}
+                    </div>
+                </section>
+
+                {frontmatter.tech && frontmatter.tech.length > 0 && (
+                        <section>
+                            <h2 class="text-xl font-semibold mb-4 font-alt">Technologies Used</h2>
+                            <div class="flex flex-wrap gap-2">
+                                {frontmatter.tech.map((tech) => (
+                                        <Badge variant="secondary">{tech}</Badge>
+                                ))}
+                            </div>
+                        </section>
+                )}
+
+                {frontmatter.links && frontmatter.links.length > 0 && (
+                        <section>
+                            <h2 class="text-xl font-semibold mb-4 font-alt">Project Links</h2>
+                            <div class="space-y-2">
+                                {frontmatter.links.map((link) => (
+                                        <a
+                                                href={link.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                class="flex items-center text-primary hover:underline"
+                                        >
+                                            {link.icon && <Icon name={link.icon} class="w-4 h-4 mr-2" />}
+                                            {link.text}
+                                        </a>
+                                ))}
+                            </div>
+                        </section>
+                )}
+            </div>
+        </div>
+
+        {frontmatter.challenges && frontmatter.challenges.length > 0 && (
+                <section class="mb-12">
+                    <h2 class="text-2xl font-semibold mb-4 font-alt">Challenges and Solutions</h2>
+                    <div class="space-y-4">
+                        {frontmatter.challenges.map((challenge) => (
+                                <div class="bg-muted/20 p-6 rounded-xl">
+                                    <h3 class="font-semibold mb-2">{challenge.title}</h3>
+                                    <p class="text-muted-foreground mb-4">{challenge.description}</p>
+                                    <p class="text-primary"><strong>Solution:</strong> {challenge.solution}</p>
+                                </div>
+                        ))}
+                    </div>
+                </section>
+        )}
+
+        {frontmatter.results && (
+                <section class="mb-12">
+                    <h2 class="text-2xl font-semibold mb-4 font-alt">Results and Impact</h2>
+                    <p class="text-muted-foreground">{frontmatter.results}</p>
+                </section>
+        )}
+
+        {frontmatter.images && frontmatter.images.length > 0 && (
+                <section>
+                    <h2 class="text-2xl font-semibold mb-8 font-alt">Project Gallery</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4" id="gallery">
+                        {frontmatter.images.map((image, index) => (
+                                <div class="gallery-item cursor-pointer">
+                                    <Image
+                                            src={image}
+                                            alt={`${frontmatter.name || 'Project'} - Image ${index + 1}`}
+                                            width={400}
+                                            height={300}
+                                            class="w-full h-48 object-cover rounded-lg shadow-md transition-transform duration-300 hover:scale-105"
+                                    />
+                                </div>
+                        ))}
+                    </div>
+                </section>
+        )}
+    </div>
+
+    <!-- Gallery Modal -->
+    <div id="galleryModal" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden flex items-center justify-center">
+        <div class="max-w-4xl w-full p-4">
+            <img id="modalImage" src="" alt="Gallery image" class="max-h-[80vh] w-auto mx-auto rounded-lg shadow-lg" />
+            <div class="flex justify-between items-center mt-4">
+                <button id="prevImage" class="text-white hover:text-primary transition-colors">
+                    <Icon name="lucide:chevron-left" class="w-8 h-8" />
+                </button>
+                <button id="closeModal" class="text-white hover:text-primary transition-colors">
+                    <Icon name="lucide:x" class="w-8 h-8" />
+                </button>
+                <button id="nextImage" class="text-white hover:text-primary transition-colors">
+                    <Icon name="lucide:chevron-right" class="w-8 h-8" />
+                </button>
+            </div>
+        </div>
+    </div>
+</Layout>
+
+<script>
+    let currentImageIndex = 0;
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const modal = document.getElementById('galleryModal');
+    const modalImage = document.getElementById('modalImage');
+    const closeButton = document.getElementById('closeModal');
+    const prevButton = document.getElementById('prevImage');
+    const nextButton = document.getElementById('nextImage');
+
+    function openModal(index) {
+        currentImageIndex = index;
+        const imgSrc = galleryItems[index].querySelector('img').src;
+        modalImage.src = imgSrc;
+        modal.classList.remove('hidden');
+    }
+
+    function closeModal() {
+        modal.classList.add('hidden');
+    }
+
+    function showNextImage() {
+        currentImageIndex = (currentImageIndex + 1) % galleryItems.length;
+        const imgSrc = galleryItems[currentImageIndex].querySelector('img').src;
+        modalImage.src = imgSrc;
+    }
+
+    function showPrevImage() {
+        currentImageIndex = (currentImageIndex - 1 + galleryItems.length) % galleryItems.length;
+        const imgSrc = galleryItems[currentImageIndex].querySelector('img').src;
+        modalImage.src = imgSrc;
+    }
+
+    galleryItems.forEach((item, index) => {
+        item.addEventListener('click', () => openModal(index));
+    });
+
+    closeButton.addEventListener('click', closeModal);
+    nextButton.addEventListener('click', showNextImage);
+    prevButton.addEventListener('click', showPrevImage);
+
+    // Close modal when clicking outside the image
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (!modal.classList.contains('hidden')) {
+            if (e.key === 'ArrowRight') showNextImage();
+            if (e.key === 'ArrowLeft') showPrevImage();
+            if (e.key === 'Escape') closeModal();
+        }
+    });
+</script>

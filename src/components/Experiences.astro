@@ -1,0 +1,125 @@
+---
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import blockHatLogo from '../imgs/Blockhat-logo.png';
+import sekeraLogo from '../imgs/Sekera-logo.png';
+
+const experiencesData = [
+    {
+        company: "BlockHat",
+        url: "https://blockhat.io/",
+        position: "Web/Web3 Developer",
+        type: "Full-time",
+        logo: blockHatLogo,
+        location: "Casablanca, Morocco",
+        period: "Mar 2023 - Present",
+        responsibilities: [
+            { text: "Developed and maintained web and blockchain applications using Web3 technologies", icon: "lucide:code-2" },
+            { text: "Collaborated with cross-functional teams to integrate blockchain solutions into web platforms", icon: "lucide:users" }
+        ]
+    },
+    {
+        company: "SEKERA",
+        url: "https://sekera-group.com/",
+        position: "Cyber Security Engineer",
+        type: "Internship",
+        logo: sekeraLogo,
+        location: "Casablanca, Morocco",
+        period: "Jun 2023 - Aug 2023",
+        responsibilities: [
+            { text: "Conducted Infrastructure penetration tests, identifying and documenting vulnerabilities", icon: "lucide:shield" },
+            { text: "Engineered Docker containers to simulate diverse web security scenarios, enhancing testing effectiveness", icon: "lucide:box" },
+            { text: "Developed custom scripts to automate vulnerability scanning processes", icon: "lucide:file-code-2" }
+        ]
+    }
+];
+---
+
+<section id="experience" class="py-16">
+    <h3 class="text-4xl font-bold mb-10 text-foreground">Experience</h3>
+    <div class="space-y-6">
+        {experiencesData.map((exp, index) => (
+                <Card className="bg-gradient-to-br from-background to-muted/30 rounded-2xl shadow-lg border overflow-hidden transition-all duration-300 hover:shadow-xl">
+                    <div class="flex flex-col sm:flex-row items-center sm:items-stretch">
+                        <CardHeader className="flex-shrink-0 w-full sm:w-auto sm:flex-grow-0 p-6 flex items-center justify-start sm:justify-center ">
+                            <Image
+                                    src={exp.logo}
+                                    alt={`${exp.company} logo`}
+                                    class="w-16 h-16 rounded-xl object-contain bg-white p-2 shadow-sm"
+                            />
+                        </CardHeader>
+                        <CardContent className="flex-grow p-6 flex flex-col sm:flex-row sm:items-center justify-between w-full">
+                            <div>
+                                <h4 className="">
+                                    <a href={exp.url} target="_blank" rel="noopener noreferrer" class="hover:underline hover:text-primary transition-colors text-xl font-semibold text-foreground font-alt">
+                                        {exp.company}
+                                    </a>
+                                </h4>
+                                <p class="text-lg text-foreground/80 font-alt">{exp.position} - <span class="text-primary/80">{exp.type}</span></p>
+                                <div class="flex flex-wrap gap-4 mt-2">
+                                    <div class="flex items-center text-sm text-foreground/60">
+                                        <Icon name="lucide:map-pin" class="w-4 h-4 mr-2 text-primary/70" />
+                                        {exp.location}
+                                    </div>
+                                    <div class="flex items-center text-sm text-foreground/60">
+                                        <Icon name="lucide:calendar" class="w-4 h-4 mr-2 text-primary/70" />
+                                        {exp.period}
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="responsibilities-toggle mt-4 sm:mt-0 text-primary hover:text-primary/80 transition-colors self-end bg-primary/10 hover:bg-primary/20 rounded-full p-2" data-index={index} aria-label="Toggle responsibilities">
+                                <Icon name="lucide:chevron-down" class="w-6 h-6 transition-transform duration-300 ease-in-out" />
+                            </button>
+                        </CardContent>
+                    </div>
+                    <div class="responsibilities-content hidden" data-index={index}>
+                        <CardContent className="bg-gradient-to-br from-muted/20 to-muted/10 p-6 border-t">
+                            <h5 class="text-lg font-semibold text-foreground mb-4">Key Responsibilities:</h5>
+                            <div class="grid gap-4">
+                                {exp.responsibilities.map((task) => (
+                                        <div class="flex items-center p-4 bg-background/50 rounded-xl transition-all duration-300 hover:bg-primary/5 group">
+                                            <div class="bg-primary/10 p-2 rounded-full mr-4 group-hover:bg-primary/20">
+                                                <Icon name={task.icon} class="w-5 h-5 text-primary" />
+                                            </div>
+                                            <p class="text-sm text-foreground/80 flex-1">{task.text}</p>
+                                        </div>
+                                ))}
+                            </div>
+                        </CardContent>
+                    </div>
+                </Card>
+        ))}
+    </div>
+</section>
+
+<style>
+    .responsibilities-content {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-out, opacity 0.3s ease-out;
+    }
+    .responsibilities-content.expanded {
+        max-height: 1000px;
+        opacity: 1;
+        transition: max-height 0.5s ease-in, opacity 0.3s ease-in;
+    }
+</style>
+
+<script>
+    document.addEventListener('astro:page-load', () => {
+        const toggles = document.querySelectorAll('.responsibilities-toggle');
+        toggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const index = toggle.getAttribute('data-index');
+                const content = document.querySelector(`.responsibilities-content[data-index="${index}"]`);
+                const icon = toggle.querySelector('svg');
+
+                content.classList.toggle('expanded');
+                content.classList.toggle('hidden');
+                icon.style.transform = content.classList.contains('expanded') ? 'rotate(180deg)' : 'rotate(0deg)';
+            });
+        });
+    });
+</script>

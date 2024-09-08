@@ -6,33 +6,25 @@ const alert = {
     'statu' : "ongoing",
     'title' : "Seeking an end-of-studies internship",
 }
+import { Badge } from "@/components/ui/badge"
+
+
 ---
 
 <div class="flex flex-col md:flex-row items-center justify-start gap-4 mt-8">
-    <Image src={eljakani} alt="El Jakani Yassine" class="rounded-2xl w-32 h-32" />
+    <Image src={eljakani} alt="El Jakani Yassine" class="rounded-2xl w-32 h-32" loading="eager" />
       <div class="flex flex-col items-center md:items-start justify-center ml-4">
-          <h1 class="font-alt text-center md:text-start text-2xl md:text-3xl font-light">Hi, <span class="font-bold">I'm Yassine El Jakani<span class="text-point">.</span></span></h1>
-          <h2 class="font-alt text-center md:text-start text-2xl md:text-3xl font-light">I <span class="text-point font-bold">&lt;/&gt;</span> things, And I <span class="text-point font-bold">Secure</span> them.</h2>
-          <div class="flex items-center gap-0 md:gap-2 flex-col md:flex-row">
-            <div class="flex items-center gap-4 mt-4 rounded-full border group border-primary px-2.5 py-1.5 justify-center md:justify-start hover:bg-primary hover:text-background transition duration-300 ease-in-out cursor-pointer">
-                <Icon name="lucide:map-pin" class="w-6 h-6 text-primary group-hover:text-background transition duration-300 ease-in-out" />
-                <span class="font-alt text-sm font-light antialiased leading-2 md:leading-tight">Marrakesh, Morocco</span>
-            </div>
-            {alert.statu === "ongoing" && (
-                <a class="flex items-center gap-4 mt-4 rounded-full border group border-primary px-2.5 py-1.5 justify-center md:justify-start hover:bg-primary hover:text-background transition duration-300 ease-in-out cursor-pointer" href="mailto:eljakaniyassin@gmail.com">
-                    <div class="w-6 h-6 rounded-full flex items-center justify-center">
-                        <div class="w-3 h-3 bg-green-500 rounded-full relative">
-                            <div class="w-3 h-3 bg-green-500 rounded-full animate-ping"></div>
-                        </div>
-                    </div>
-                    <span class="font-alt text-sm font-light antialiased leading-2 md:leading-tight">{alert.title}</span>
-                </a>
-            )}
+          <h1 class="font-alt text-center md:text-start text-2xl md:text-3xl font-light">Hi, <span class="font-bold">I'm Yassine El Jakani<span class="text-point">.</span></span> 👋</h1>
+          <h2 class="font-alt text-center md:text-start text-2xl md:text-3xl font-light">I <span class="text-point font-bold">&lt;dev/&gt;</span> things, And I <span class="text-point font-bold">Secure</span> them.</h2>
+          <div class="flex items-center gap-2 flex-col md:flex-row mt-4">
+            <Badge variant="outline">
+                <span class="font-alt text-xs font-light antialiased leading-2 md:leading-tight">{alert.title}</span>
+            </Badge>
           </div>
       </div>
   </div>
   <div class="my-4">
-      <p class="font-alt text-md md:text-xl font-light antialiased leading-2 md:leading-tight text-center md:text-left">
-          As a creative cyber security engineer, I specialize in designing and implementing robust security solutions to protect organizations from evolving cyber threats. With a passion for innovation and a deep understanding of the latest security technologies, I strive to create secure and user-friendly digital experiences.
+      <p class="font-alt text-md md:text-xl font-light antialiased leading-2 md:leading-tight text-center md:text-left text-balance">
+          Cybersecurity engineering student specializing in DevSecOps. Passionate about securing digital environments and automating security processes. Experienced in web development, penetration testing, and blockchain technologies.
       </p>
   </div>

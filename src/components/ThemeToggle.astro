@@ -10,22 +10,30 @@ import { Button } from '@/components/ui/button';
 </Button>
 
 <script>
-  const themeToggle = document.getElementById('theme-toggle');
-  const html = document.documentElement;
+  function initializeThemeToggle() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
 
-  function setTheme(theme: 'light' | 'dark') {
-    html.classList.remove('light', 'dark');
-    html.classList.add(theme);
-    localStorage.setItem('theme', theme);
+    function setTheme(theme: 'light' | 'dark') {
+      html.classList.remove('light', 'dark');
+      html.classList.add(theme);
+      localStorage.setItem('theme', theme);
+    }
+
+    themeToggle?.addEventListener('click', () => {
+      const currentTheme = html.classList.contains('dark') ? 'light' : 'dark';
+      setTheme(currentTheme);
+    });
+
+    // Set initial theme
+    const storedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setTheme(storedTheme ?? (prefersDark ? 'dark' : 'light'));
   }
 
-  themeToggle?.addEventListener('click', () => {
-    const currentTheme = html.classList.contains('dark') ? 'light' : 'dark';
-    setTheme(currentTheme);
-  });
+  // Initialize on first load
+  initializeThemeToggle();
 
-  // Set initial theme
-  const storedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  setTheme(storedTheme ?? (prefersDark ? 'dark' : 'light'));
+  // Re-initialize on subsequent navigations
+  document.addEventListener('astro:after-swap', initializeThemeToggle);
 </script>
