@@ -46,13 +46,15 @@ const experiencesData = [
                             <Image
                                     src={exp.logo}
                                     alt={`${exp.company} logo`}
+                                    width={64}
+                                    height={64}
                                     class="w-16 h-16 rounded-xl object-contain bg-white p-2 shadow-sm"
                             />
                         </CardHeader>
                         <CardContent className="flex-grow p-6 flex flex-col sm:flex-row sm:items-center justify-between w-full">
                             <div>
-                                <h4 className="">
-                                    <a href={exp.url} target="_blank" rel="noopener noreferrer" class="hover:underline hover:text-primary transition-colors text-xl font-semibold text-foreground font-alt">
+                                <h4 class="text-xl font-semibold text-foreground font-alt">
+                                    <a href={exp.url} target="_blank" rel="noopener noreferrer" class="hover:underline hover:text-primary transition-colors">
                                         {exp.company}
                                     </a>
                                 </h4>
@@ -116,9 +118,11 @@ const experiencesData = [
                 const content = document.querySelector(`.responsibilities-content[data-index="${index}"]`);
                 const icon = toggle.querySelector('svg');
 
-                content.classList.toggle('expanded');
-                content.classList.toggle('hidden');
-                icon.style.transform = content.classList.contains('expanded') ? 'rotate(180deg)' : 'rotate(0deg)';
+                if (content && icon) {
+                    content.classList.toggle('expanded');
+                    content.classList.toggle('hidden');
+                    icon.style.transform = content.classList.contains('expanded') ? 'rotate(180deg)' : 'rotate(0deg)';
+                }
             });
         });
     });

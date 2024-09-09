@@ -5,6 +5,43 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Image } from 'astro:assets';
 
+interface Challenge {
+    title: string;
+    description: string;
+    solution: string;
+}
+
+interface Link {
+    url: string;
+    text: string;
+    icon?: string;
+}
+
+interface TeamMember {
+    name: string;
+    link: string;
+}
+
+interface Frontmatter {
+    id: string;
+    name: string;
+    description?: string;
+    icon?: string;
+    image?: ImageMetadata;
+    overview?: string;
+    features?: string[];
+    process?: string;
+    date?: string;
+    category?: string;
+    team?: TeamMember[];
+    client?: string;
+    tech?: string[];
+    links?: Link[];
+    challenges?: Challenge[];
+    results?: string;
+    images?: ImageMetadata[];
+}
+
 const { frontmatter } = Astro.props;
 ---
 
@@ -21,7 +58,7 @@ const { frontmatter } = Astro.props;
             <div class="flex items-center gap-4 mb-4">
                 {frontmatter.icon && (
                         <div class="bg-primary/10 p-3 rounded-full" transition:name={`project-icon-${frontmatter.id}`}>
-                            <Icon  name={frontmatter.icon} class="w-8 h-8 text-primary" />
+                            <Icon name={frontmatter.icon} class="w-8 h-8 text-primary" />
                         </div>
                 )}
                 <h1 class="text-4xl font-bold text-foreground font-alt" transition:name={`project-name-${frontmatter.id}`}>{frontmatter.name || 'Project'}</h1>
@@ -54,7 +91,7 @@ const { frontmatter } = Astro.props;
                         <section>
                             <h2 class="text-2xl font-semibold mb-4 font-alt">Key Features</h2>
                             <ul class="space-y-2">
-                                {frontmatter.features.map((feature) => (
+                                {frontmatter.features.map((feature: string) => (
                                         <li class="flex items-start">
                                             <Icon name="lucide:check-circle" class="w-5 h-5 text-primary mr-2 flex-shrink-0 mt-1" />
                                             <span class="text-muted-foreground">{feature}</span>
@@ -92,11 +129,11 @@ const { frontmatter } = Astro.props;
                                 <div>
                                     <h3 class="font-semibold text-sm uppercase text-muted-foreground font-alt">Team</h3>
                                     <div class="flex flex-wrap gap-2 mt-1">
-                                    {frontmatter.team.map((member: { name: string; link: string }) => (
-                                            <a href={member.link} target="_blank" rel="noopener" class="text-sm flex items-center text-foreground py-0.5 px-1.5 bg-primary/10 rounded-full hover:bg-primary/20">
-                                                {member.name}
-                                            </a>
-                                    ))}
+                                        {frontmatter.team.map((member: TeamMember) => (
+                                                <a href={member.link} target="_blank" rel="noopener" class="text-sm flex items-center text-foreground py-0.5 px-1.5 bg-primary/10 rounded-full hover:bg-primary/20">
+                                                    {member.name}
+                                                </a>
+                                        ))}
                                     </div>
                                 </div>
                         )}
@@ -113,7 +150,7 @@ const { frontmatter } = Astro.props;
                         <section>
                             <h2 class="text-xl font-semibold mb-4 font-alt">Technologies Used</h2>
                             <div class="flex flex-wrap gap-2">
-                                {frontmatter.tech.map((tech) => (
+                                {frontmatter.tech.map((tech: string) => (
                                         <Badge variant="secondary">{tech}</Badge>
                                 ))}
                             </div>
@@ -124,7 +161,7 @@ const { frontmatter } = Astro.props;
                         <section>
                             <h2 class="text-xl font-semibold mb-4 font-alt">Project Links</h2>
                             <div class="space-y-2">
-                                {frontmatter.links.map((link) => (
+                                {frontmatter.links.map((link: Link) => (
                                         <a
                                                 href={link.url}
                                                 target="_blank"
@@ -145,7 +182,7 @@ const { frontmatter } = Astro.props;
                 <section class="mb-12">
                     <h2 class="text-2xl font-semibold mb-4 font-alt">Challenges and Solutions</h2>
                     <div class="space-y-4">
-                        {frontmatter.challenges.map((challenge) => (
+                        {frontmatter.challenges.map((challenge: Challenge) => (
                                 <div class="bg-muted/20 p-6 rounded-xl">
                                     <h3 class="font-semibold mb-2">{challenge.title}</h3>
                                     <p class="text-muted-foreground mb-4">{challenge.description}</p>
@@ -167,7 +204,7 @@ const { frontmatter } = Astro.props;
                 <section>
                     <h2 class="text-2xl font-semibold mb-8 font-alt">Project Gallery</h2>
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-4" id="gallery">
-                        {frontmatter.images.map((image, index) => (
+                        {frontmatter.images.map((image: ImageMetadata, index: number) => (
                                 <div class="gallery-item cursor-pointer">
                                     <Image
                                             src={image}
@@ -205,17 +242,19 @@ const { frontmatter } = Astro.props;
 <script>
     let currentImageIndex = 0;
     const galleryItems = document.querySelectorAll('.gallery-item');
-    const modal = document.getElementById('galleryModal');
-    const modalImage = document.getElementById('modalImage');
+    const modal = document.getElementById('galleryModal') as HTMLElement;
+    const modalImage = document.getElementById('modalImage') as HTMLImageElement;
     const closeButton = document.getElementById('closeModal');
     const prevButton = document.getElementById('prevImage');
     const nextButton = document.getElementById('nextImage');
 
-    function openModal(index) {
+    function openModal(index: number) {
         currentImageIndex = index;
-        const imgSrc = galleryItems[index].querySelector('img').src;
-        modalImage.src = imgSrc;
-        modal.classList.remove('hidden');
+        const imgElement = galleryItems[index].querySelector('img');
+        if (imgElement instanceof HTMLImageElement) {
+            modalImage.src = imgElement.src;
+            modal.classList.remove('hidden');
+        }
     }
 
     function closeModal() {
@@ -224,32 +263,34 @@ const { frontmatter } = Astro.props;
 
     function showNextImage() {
         currentImageIndex = (currentImageIndex + 1) % galleryItems.length;
-        const imgSrc = galleryItems[currentImageIndex].querySelector('img').src;
-        modalImage.src = imgSrc;
+        const imgElement = galleryItems[currentImageIndex].querySelector('img');
+        if (imgElement instanceof HTMLImageElement) {
+            modalImage.src = imgElement.src;
+        }
     }
 
     function showPrevImage() {
         currentImageIndex = (currentImageIndex - 1 + galleryItems.length) % galleryItems.length;
-        const imgSrc = galleryItems[currentImageIndex].querySelector('img').src;
-        modalImage.src = imgSrc;
+        const imgElement = galleryItems[currentImageIndex].querySelector('img');
+        if (imgElement instanceof HTMLImageElement) {
+            modalImage.src = imgElement.src;
+        }
     }
 
     galleryItems.forEach((item, index) => {
         item.addEventListener('click', () => openModal(index));
     });
 
-    closeButton.addEventListener('click', closeModal);
-    nextButton.addEventListener('click', showNextImage);
-    prevButton.addEventListener('click', showPrevImage);
+    closeButton?.addEventListener('click', closeModal);
+    nextButton?.addEventListener('click', showNextImage);
+    prevButton?.addEventListener('click', showPrevImage);
 
-    // Close modal when clicking outside the image
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
             closeModal();
         }
     });
 
-    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
         if (!modal.classList.contains('hidden')) {
             if (e.key === 'ArrowRight') showNextImage();
