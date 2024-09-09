@@ -68,6 +68,7 @@ const StickyNavigation: React.FC<StickyNavigationProps> = ({ navItems }) => {
           {navItems.map((item) => (
             <Button
             key={item.id}
+            aria-label={item.label}
             variant={activeSection === item.id.toLowerCase() ? 'default' : 'ghost'}
             size="sm"
             className="rounded-full flex items-center gap-1 md:gap-2"

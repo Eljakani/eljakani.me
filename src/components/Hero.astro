@@ -11,12 +11,12 @@ import { Badge } from "@/components/ui/badge"
 
 ---
 
-<div class="flex flex-col md:flex-row items-center justify-start gap-4 mt-8">
+<div class="flex flex-row items-center justify-start gap-4 mt-4 md:mt-8">
     <Image src={eljakani} alt="El Jakani Yassine" class="rounded-2xl w-32 h-32" loading="eager" />
       <div class="flex flex-col items-center md:items-start justify-center ml-4">
-          <h1 class="font-alt text-center md:text-start text-2xl md:text-3xl font-light">Hi, <span class="font-bold">I'm Yassine El Jakani<span class="text-point">.</span></span> 👋</h1>
-          <h2 class="font-alt text-center md:text-start text-2xl md:text-3xl font-light">I <span class="text-point font-bold">&lt;dev/&gt;</span> things, And I <span class="text-point font-bold">Secure</span> them.</h2>
-          <div class="flex items-center gap-2 flex-col md:flex-row mt-4">
+          <h1 class="font-alt text-start text-xl md:text-3xl font-light text-balance">Hi, <span class="font-bold">I'm Yassine El Jakani<span class="text-point">.</span></span> 👋</h1>
+          <h2 class="font-alt text-start text-lg md:text-3xl font-light text-balance">I <span class="text-point font-bold">&lt;dev/&gt;</span> things, And I <span class="text-point font-bold">Secure</span> them.</h2>
+          <div class="items-center gap-2 flex-col md:flex-row mt-4 hidden md:flex">
             <Badge variant="outline">
                 <span class="font-alt text-xs font-light antialiased leading-2 md:leading-tight">{alert.title}</span>
             </Badge>
@@ -24,7 +24,7 @@ import { Badge } from "@/components/ui/badge"
       </div>
   </div>
   <div class="my-4">
-      <p class="font-alt text-md md:text-xl font-light antialiased leading-2 md:leading-tight text-center md:text-left text-balance">
+      <p class="font-alt text-md md:text-xl font-light antialiased leading-2 md:leading-relaxed text-left text-balance">
           Cybersecurity engineering student and DevSecOps enthusiast. Passionate about securing digital environments and automating security processes. Experienced in web development, penetration testing, and blockchain technologies.
       </p>
   </div>
