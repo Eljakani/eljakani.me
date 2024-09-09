@@ -21,6 +21,11 @@ export default defineConfig({
       wrap: true
     }
   },
+  // Build configuration
+  build: {
+    // Exclude node_modules and .dist folders from processing
+    exclude: ['**/node_modules/**', '**/.dist/**']
+  },
   output: "server",
   adapter: node({
     mode: "standalone"

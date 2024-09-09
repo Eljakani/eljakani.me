@@ -43,7 +43,6 @@ interface Frontmatter {
 }
 
 const { frontmatter } = Astro.props;
-// SEO optimization: Generate a meta description
 const metaDescription = frontmatter.description || frontmatter.overview || `Details about the ${frontmatter.name} project`;
 ---
 
@@ -210,23 +209,23 @@ const metaDescription = frontmatter.description || frontmatter.overview || `Deta
         )}
 
         {frontmatter.images && frontmatter.images.length > 0 && (
-        <section>
-            <h2 class="text-2xl font-semibold mb-8 font-alt">Project Gallery</h2>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4" id="gallery">
-                {frontmatter.images.map((image: ImageMetadata, index: number) => (
-                        <div class="gallery-item cursor-pointer" data-index={index}>
-                            <Image
-                                    src={image}
-                                    alt={`${frontmatter.name || 'Project'} - Image ${index + 1}`}
-                                    width={400}
-                                    height={300}
-                                    class="w-full h-48 object-cover rounded-lg shadow-md transition-transform duration-300"
-                                    loading="lazy"
-                            />
-                        </div>
-                ))}
-            </div>
-        </section>
+                <section>
+                    <h2 class="text-2xl font-semibold mb-8 font-alt">Project Gallery</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4" id="gallery">
+                        {frontmatter.images.map((image: ImageMetadata, index: number) => (
+                                <div class="gallery-item cursor-pointer" data-index={index}>
+                                    <Image
+                                            src={image}
+                                            alt={`${frontmatter.name || 'Project'} - Image ${index + 1}`}
+                                            width={400}
+                                            height={300}
+                                            class="w-full h-48 object-cover rounded-lg shadow-md transition-transform duration-300"
+                                            loading="lazy"
+                                    />
+                                </div>
+                        ))}
+                    </div>
+                </section>
         )}
     </article>
 
@@ -250,30 +249,30 @@ const metaDescription = frontmatter.description || frontmatter.overview || `Deta
 <script>
     function initGallery() {
         let currentImageIndex = 0;
-        const galleryItems = document.querySelectorAll('.gallery-item');
+        const galleryItems = document.querySelectorAll<HTMLElement>('.gallery-item');
         const modal = document.getElementById('galleryModal');
-        const modalImage = document.getElementById('modalImage');
+        const modalImage = document.getElementById('modalImage') as HTMLImageElement | null;
         const closeButton = document.getElementById('closeModal');
         const prevButton = document.getElementById('prevImage');
         const nextButton = document.getElementById('nextImage');
 
         if (!modal || !modalImage || !closeButton || !prevButton || !nextButton) return;
 
-        function openModal(index) {
+        function openModal(index: number) {
             currentImageIndex = index;
             updateModalImage();
-            modal.classList.remove('hidden');
+            modal?.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
-            modal.classList.add('hidden');
+            modal?.classList.add('hidden');
             document.body.style.overflow = '';
         }
 
         function updateModalImage() {
             const imgElement = galleryItems[currentImageIndex].querySelector('img');
-            if (imgElement) {
+            if (imgElement instanceof HTMLImageElement && modalImage) {
                 modalImage.src = imgElement.src;
                 modalImage.alt = imgElement.alt;
             }
@@ -289,8 +288,8 @@ const metaDescription = frontmatter.description || frontmatter.overview || `Deta
             updateModalImage();
         }
 
-        galleryItems.forEach((item) => {
-            item.addEventListener('click', () => openModal(parseInt(item.dataset.index)));
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => openModal(index));
         });
 
         closeButton.addEventListener('click', closeModal);
@@ -304,7 +303,7 @@ const metaDescription = frontmatter.description || frontmatter.overview || `Deta
         });
 
         document.addEventListener('keydown', (e) => {
-            if (!modal.classList.contains('hidden')) {
+            if (modal && !modal.classList.contains('hidden')) {
                 if (e.key === 'ArrowRight') showNextImage();
                 if (e.key === 'ArrowLeft') showPrevImage();
                 if (e.key === 'Escape') closeModal();
@@ -312,7 +311,7 @@ const metaDescription = frontmatter.description || frontmatter.overview || `Deta
         });
 
         // Lazy loading optimization
-        const observerOptions = {
+        const observerOptions: IntersectionObserverInit = {
             root: null,
             rootMargin: '0px',
             threshold: 0.1
@@ -322,7 +321,7 @@ const metaDescription = frontmatter.description || frontmatter.overview || `Deta
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const img = entry.target.querySelector('img');
-                    if (img && img.dataset.src) {
+                    if (img instanceof HTMLImageElement && img.dataset.src) {
                         img.src = img.dataset.src;
                         img.removeAttribute('data-src');
                     }
@@ -337,9 +336,9 @@ const metaDescription = frontmatter.description || frontmatter.overview || `Deta
 
         // Preload adjacent images for smoother navigation
         function preloadAdjacentImages() {
-            const preloadIndex = (index) => {
+            const preloadIndex = (index: number) => {
                 const adjacentImg = galleryItems[index].querySelector('img');
-                if (adjacentImg && adjacentImg.dataset.src) {
+                if (adjacentImg instanceof HTMLImageElement && adjacentImg.dataset.src) {
                     const preloadLink = document.createElement('link');
                     preloadLink.href = adjacentImg.dataset.src;
                     preloadLink.rel = 'preload';
