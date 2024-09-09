@@ -1,5 +1,4 @@
 ---
-import { Button } from '@/components/ui/button';
 import ThemeToggle from './ThemeToggle.astro';
 import { Github, Linkedin } from 'lucide-react';
 
@@ -7,16 +6,16 @@ import { Github, Linkedin } from 'lucide-react';
 
 <header class="py-4 flex justify-between items-center" transition:persist>
   <nav class="hidden md:flex items-center space-x-4">
-    <Button variant="secondary" size="sm" className="rounded-full">
-      <a href="https://blog.eljakani.me" target="_blank" rel="noopener dofollow">Blog</a>
-    </Button>
+    <a href="https://blog.eljakani.me" target="_blank" rel="noopener dofollow" class="rounded-full p-2 text-muted-foreground hover:text-primary bg-primary/10 hover:bg-primary/20 transition-colors px-3">
+      Blog
+    </a>
   </nav>
   <h1 class="text-2xl font-bold font-alt">Eljakani<span class="text-point">.</span></h1>
   <div class="flex items-center space-x-4">
     <a href="https://github.com/Eljakani" class="text-muted-foreground hover:text-primary"  target="_blank" rel="noopener dofollow" aria-label="Github">
       <Github className="w-6 h-6" />
     </a>
-    <a href="https://linkedin/in/eljakaniyassine" class="text-muted-foreground hover:text-primary" target="_blank" rel="noopener dofollow" aria-label="Linkedin">
+    <a href="https://linkedin.com/in/eljakaniyassine" class="text-muted-foreground hover:text-primary" target="_blank" rel="noopener dofollow" aria-label="Linkedin">
       <Linkedin className="w-6 h-6" />
     </a>
     <ThemeToggle />

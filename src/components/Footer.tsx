@@ -72,6 +72,7 @@ const RearrangedCompactFooter: React.FC = () => {
 
             <motion.button
                 className="fixed bottom-4 right-4 bg-primary text-primary-foreground rounded-full p-2 shadow-lg"
+                aria-label="Back to top"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                 initial={{ opacity: 0, y: 100 }}
                 animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 100 }}
