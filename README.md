@@ -1,58 +1,49 @@
-# Astro Starter Kit: Shadcn + Tailwind
+# Eljakani's Personal Website
 
-```
-npm create astro@latest -- --template rakarmp/astro-shadcn-ui
-```
+Welcome to the repository of my personal website! This site showcases my skills, experiences, and projects as a Cybersecurity Engineer and DevSecOps enthusiast.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/rakarmp/astro-shadcn-ui)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/rakarmp/astro-shadcn-ui)
+## 🚀 Technologies Used
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+- [Astro](https://astro.build/): Fast, content-focused web framework
+- [React](https://reactjs.org/): For interactive components
+- [Tailwind CSS](https://tailwindcss.com/): Utility-first CSS framework
+- [shadcn/ui](https://ui.shadcn.com/): Re-usable components built with Radix UI and Tailwind CSS
+- [TypeScript](https://www.typescriptlang.org/): Typed JavaScript at any scale
 
-<img src="./public/img.png" alt="preview">
+## 🛠 Setup
 
-## 🚀 Project Structure
+1. Clone the repository:
+   ```
+   git clone https://github.com/Eljakani/eljakani.me.git
+   ```
 
-Inside of your Astro project, you'll see the following folders and files:
+2. Install dependencies:
+   ```
+   npm install
+   ```
 
-```
-/
-├── public/
-├── src/
-│   ├── components/
-│   │   └── ui/
-│   ├── lib/
-│   ├── pages/
-│   │    └── index.astro
-│   ├── styles/
-│   └── env.d.ts
-├── .gitignore
-├── astro.config.mjs
-├── components.json
-├── package.json
-├── tailwind.config.cjs
-├── tsconfig.json
-```
+3. Run the development server:
+   ```
+   npm run dev
+   ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-Any static assets, like images, can be placed in the `public/` directory.
+## 🔧 Customization
 
-## 🧞 Commands
+Feel free to fork this repository and customize it for your own use. Update the content in the Astro pages and components to reflect your personal information and experiences.
 
-All commands are run from the root of the project, from a terminal:
+## 📄 License
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+This project is open source and available under the [MIT License](LICENSE).
 
-## 👀 Want to learn more?
+## 🤝 Contributing
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/Eljakani/eljakani.me/issues) if you want to contribute.
+
+## 📬 Contact
+
+Yassine El Jakani - [@eljakaniyassine](https://linkedin.com/in/eljakaniyassine) - eljakaniyassin@gmail.com
+
+Project Link: [https://eljakani.me](https://eljakani.me)
