@@ -1,0 +1,8 @@
+name = "eljakani-shacdn"
+compatibility_date = "2024-02-22"
+
+[site]
+bucket = "./dist"
+
+# Specify the main entry point
+main = "dist/_worker.js"
