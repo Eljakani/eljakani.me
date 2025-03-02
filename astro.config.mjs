@@ -3,7 +3,7 @@ import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
 import mdx from "@astrojs/mdx";
-import cloudflare from '@astrojs/cloudflare';
+import netlify from '@astrojs/netlify/functions';
 
 export default defineConfig({
   integrations: [
@@ -24,14 +24,5 @@ export default defineConfig({
     exclude: ['**/node_modules/**', '**/.dist/**']
   },
   output: "server",
-  adapter: cloudflare({
-    platformProxy: {
-      enabled: true,
-    },
-  }),
-  image: {
-    service: {
-      entrypoint: '@astrojs/cloudflare/assets'
-    }
-  }
+  adapter: netlify(),
 });
