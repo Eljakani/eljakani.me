@@ -4,6 +4,28 @@ import { Image } from 'astro:assets';
 
 const projects = [
   {
+    id: 'bugoff',
+    name: 'BugOff',
+    description: 'AI-Powered Code Vulnerability Analysis in an Integrated DevSecOps Pipeline',
+    extendedDescription: 'A comprehensive platform that uses Retrieval Augmented Generation (RAG) to detect vulnerabilities in code across multiple programming languages.',
+    year: '2024',
+    icon: 'lucide:shield-check',
+    category: 'Cybersecurity',
+    image: '/projects/bugoff/bugoff_featured.png',
+    tech: ['Next.js', 'Spring Boot','RAG', 'AWS', 'Terraform', 'Kafka', 'MongoDB']
+  },
+  {
+    id: 'quizqube',
+    name: 'QuizQube',
+    description: 'AI-powered quiz platform for learning and knowledge testing',
+    extendedDescription: 'An AI-powered quiz platform that helps users learn and test their knowledge by generating quizzes from uploaded documents.',
+    year: '2024',
+    icon: 'lucide:brain-circuit',
+    category: 'Personal',
+    image: '/projects/quizqube/quizqube_featured.png',
+    tech: ['Next.js', 'Shadcn UI', 'Framer Motion', 'NextAuth.js', 'AWS S3', 'LLMs']
+  },
+  {
     id: 'siemtinel',
     name: 'SIEMTINEL',
     description: 'Cloud-based SIEM with ELK Stack and Suricata',
@@ -25,17 +47,6 @@ const projects = [
     image: '/projects/hac/hac_featured.png',
     tech: ['Bash', 'Linux', 'ANSSI Guidelines']
   },
-  {
-    id: 'quizqube',
-    name: 'QuizQube',
-    description: 'AI-powered quiz platform for learning and knowledge testing',
-    extendedDescription: 'An AI-powered quiz platform that helps users learn and test their knowledge by generating quizzes from uploaded documents.',
-    year: '2024',
-    icon: 'lucide:brain-circuit',
-    category: 'Personal',
-    image: '/projects/quizqube/quizqube_featured.png',
-    tech: ['Next.js', 'Shadcn UI', 'Framer Motion', 'NextAuth.js', 'AWS S3', 'LLMs']
-  },
   // more projects are yet to come ...
 ];
 ---
@@ -51,8 +62,8 @@ const projects = [
                 <Image
                     src={project.image}
                     alt={`${project.name} project`}
-                    width={100}
-                    height={100}
+                    width={500}
+                    height={500}
                     transition:animate="fade"
                     transition:name={`project-${project.id}`}
                     class="w-full h-48 object-cover rounded-2xl"

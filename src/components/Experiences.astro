@@ -4,16 +4,31 @@ import { Icon } from 'astro-icon/components';
 import { Image } from 'astro:assets';
 import blockHatLogo from '../imgs/Blockhat-logo.png';
 import sekeraLogo from '../imgs/Sekera-logo.png';
+import oracleLogo from '../imgs/Oracle-logo.png';
 
 const experiencesData = [
+    {
+        company: "Oracle R&D Center",
+        url: "https://www.oracle.com/",
+        position: "DevSecOps Engineer",
+        type: "Internship",
+        logo: oracleLogo,
+        location: "Casablanca, Morocco",
+        period: "Feb 2025 - Present",
+        responsibilities: [
+            { text: "Developing and implementing an internal compliance and security solution for applications hosted on Oracle Cloud Infrastructure (OCI), focusing on cost optimization and efficient cloud resource management", icon: "lucide:shield-check" },
+            { text: "Setting up analysis and monitoring tools to identify cost optimization opportunities in cloud environments, including detection of underutilized resources and non-optimal configurations", icon: "lucide:line-chart" },
+            { text: "Collaborating with international teams to establish best practices for security and cost optimization in the OCI cloud, while ensuring compliance with security standards", icon: "lucide:users-2" }
+        ]
+    },
     {
         company: "BlockHat",
         url: "https://blockhat.io/",
         position: "Web/Web3 Developer",
-        type: "Full-time",
+        type: "Part-time",
         logo: blockHatLogo,
         location: "Casablanca, Morocco",
-        period: "Mar 2023 - Present",
+        period: "Mar 2023 - Jan 2025",
         responsibilities: [
             { text: "Developed and maintained web and blockchain applications using Web3 technologies", icon: "lucide:code-2" },
             { text: "Collaborated with cross-functional teams to integrate blockchain solutions into web platforms", icon: "lucide:users" }
