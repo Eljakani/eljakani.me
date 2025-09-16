@@ -59,7 +59,7 @@ const RearrangedCompactFooter: React.FC = () => {
                             </div>
                             <div className="flex items-center justify-center md:justify-end">
                                 <Phone size={14} className="mr-1" />
-                                <a href="tel:+212672486817">+212 6 72 48 68 17</a>
+                                <a href="tel:+33751456937">+33 7 51 45 69 37</a>
                             </div>
                         </div>
                     </div>
