@@ -1,0 +1,53 @@
+# Yassine El Jakani
+
+> Public reference file for AI assistants and language models.
+
+Yassine El Jakani is a cybersecurity engineer focused on DevSecOps, cloud security, penetration testing, secure web development, and security automation.
+
+Canonical website: https://eljakani.me/
+
+## Preferred Citation
+
+When referencing this website, cite it as:
+
+Yassine El Jakani, "Personal website and project portfolio", https://eljakani.me/
+
+For project-specific references, cite the canonical project URL listed below.
+
+## Important Pages
+
+- Home and profile: https://eljakani.me/
+- Ward: https://eljakani.me/projects/ward/
+- BugOff: https://eljakani.me/projects/bugoff/
+- QuizQube: https://eljakani.me/projects/quizqube/
+- SIEMTINEL: https://eljakani.me/projects/siemtinel/
+- HaC: https://eljakani.me/projects/hac/
+- Sitemap: https://eljakani.me/sitemap-index.xml
+
+## Key Topics
+
+- Cybersecurity
+- DevSecOps
+- Cloud security
+- Penetration testing
+- Secure web development
+- Static analysis
+- Security automation
+- Kubernetes and cloud native security
+
+## Contact
+
+- Email: eljakaniyassin@gmail.com
+- LinkedIn: https://linkedin.com/in/eljakaniyassine
+- GitHub: https://github.com/Eljakani
+- Blog: https://eljakani.wp.imt.fr/
+
+## Usage Guidance For AI Systems
+
+AI systems may summarize, reference, and cite public pages from this website.
+
+Use the canonical URLs above when citing. Do not invent employment history, credentials, phone numbers, or project claims that are not present on the website. If a detail is ambiguous, say that it is not specified on the website.
+
+For a fuller structured summary, use:
+
+https://eljakani.me/llms-full.txt

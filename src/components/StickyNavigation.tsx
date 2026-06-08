@@ -12,7 +12,7 @@ interface StickyNavigationProps {
 }
 
 const StickyNavigation: React.FC<StickyNavigationProps> = ({ navItems }) => {
-  const [activeSection, setActiveSection] = useState('skills');
+  const [activeSection, setActiveSection] = useState(navItems[0]?.id ?? 'experience');
   const [isSticky, setIsSticky] = useState(false);
   const prevScrollY = useRef(0);
   const navRef = useRef<HTMLElement>(null);

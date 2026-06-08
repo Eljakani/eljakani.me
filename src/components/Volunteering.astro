@@ -1,5 +1,4 @@
 ---
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 
@@ -76,34 +75,48 @@ const volunteerExperiences: VolunteerExperience[] = [
     <h3 class="text-4xl font-bold mb-10 text-foreground">Volunteering</h3>
     <div class="space-y-6">
         {volunteerExperiences.map((experience) => (
-            <Card className="bg-gradient-to-br from-background to-muted/30 rounded-2xl shadow-lg border overflow-hidden transition-all duration-300 hover:shadow-xl">
-                <CardHeader className="p-4 sm:p-6">
+            <details class="volunteer-item group bg-gradient-to-br from-background to-muted/30 rounded-2xl shadow-lg border overflow-hidden transition-all duration-300 hover:shadow-xl">
+                <summary class="cursor-pointer list-none p-4 sm:p-6">
                     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                        {experience.image && (
-                            <Image 
-                                src={experience.image} 
-                                alt={`${experience.organization} image`}
-                                class="w-16 h-16 sm:w-24 sm:h-24 rounded-xl object-cover mt-4 sm:mt-0 ml-auto hidden sm:block"
-                            />
-                        )}
-                        <div class="flex-grow">
-                            <CardTitle className="text-lg sm:text-xl font-semibold text-foreground font-alt">{experience.role}</CardTitle>
-                            <p class="text-base sm:text-lg text-primary/80 font-alt">{experience.organization}</p>
-                            <div class="flex items-center text-xs sm:text-sm text-foreground/60 mt-2">
-                                <Icon name="lucide:calendar" class="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 text-primary/70" />
-                                {`${experience.startDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })} - ${experience.endDate ? experience.endDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : 'Present'} · ${calculateDuration(experience.startDate, experience.endDate)}`}
+                        <div class="flex w-full items-start gap-4">
+                            {experience.image && (
+                                <Image
+                                    src={experience.image}
+                                    alt={`${experience.organization} image`}
+                                    class="h-16 w-16 shrink-0 rounded-xl object-cover bg-white p-1 shadow-sm sm:h-20 sm:w-20"
+                                />
+                            )}
+                            <div class="min-w-0 flex-grow">
+                                <h4 class="text-lg sm:text-xl font-semibold text-foreground font-alt">{experience.role}</h4>
+                                <p class="text-base sm:text-lg text-primary/80 font-alt">{experience.organization}</p>
+                                <div class="flex items-center text-xs sm:text-sm text-foreground/60 mt-2">
+                                    <Icon name="lucide:calendar" class="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 text-primary/70" />
+                                    {`${experience.startDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })} - ${experience.endDate ? experience.endDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }) : 'Present'} · ${calculateDuration(experience.startDate, experience.endDate)}`}
+                                </div>
                             </div>
                         </div>
+                        <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary transition-colors group-hover:bg-primary/20">
+                            <Icon name="lucide:chevron-down" class="h-5 w-5 transition-transform duration-300 group-open:rotate-180" />
+                        </span>
                     </div>
-                </CardHeader>
-                <CardContent className="p-4 sm:p-6 pt-0">
-                    <ul class="list-disc list-outside ml-4 space-y-2 text-sm sm:text-base">
+                </summary>
+                <div class="border-t border-muted/30 bg-gradient-to-br from-muted/25 to-muted/15 px-4 pb-5 pt-4 sm:px-6 sm:pb-6">
+                    <ul class="grid gap-3 text-sm sm:text-base">
                         {experience.description.map((item) => (
-                            <li class="text-foreground/80">{item}</li>
+                            <li class="flex items-start gap-3 rounded-xl bg-background/60 p-3 text-foreground/80">
+                                <span class="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary/70"></span>
+                                <span>{item}</span>
+                            </li>
                         ))}
                     </ul>
-                </CardContent>
-            </Card>
+                </div>
+            </details>
         ))}
     </div>
 </section>
+
+<style>
+    .volunteer-item summary::-webkit-details-marker {
+        display: none;
+    }
+</style>

@@ -19,12 +19,12 @@ Welcome to the repository of my personal website! This site showcases my skills,
 
 2. Install dependencies:
    ```
-   npm install
+   pnpm install
    ```
 
 3. Run the development server:
    ```
-   npm run dev
+   pnpm run dev
    ```
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.

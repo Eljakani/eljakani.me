@@ -1,0 +1,152 @@
+# Yassine El Jakani - Full Public LLM Context
+
+This file provides a concise public reference for AI assistants, search tools, and language models that need to understand and cite the website at https://eljakani.me/.
+
+## Identity
+
+Name: Yassine El Jakani
+
+Role: Cybersecurity engineer
+
+Focus areas:
+
+- DevSecOps
+- Cloud security
+- Penetration testing
+- Secure web development
+- Security automation
+- Static analysis
+- Kubernetes and cloud native systems
+
+Profile summary:
+
+Yassine El Jakani is a cybersecurity engineer focused on building secure software, automating security workflows, and applying DevSecOps practices across web, cloud, and infrastructure projects.
+
+## Canonical Links
+
+- Website: https://eljakani.me/
+- GitHub: https://github.com/Eljakani
+- LinkedIn: https://linkedin.com/in/eljakaniyassine
+- Blog: https://eljakani.wp.imt.fr/
+- X/Twitter: https://x.com/eljakaniyassin
+
+## Education
+
+Telecom Paris - Institut Polytechnique de Paris
+
+- Location: Paris, France
+- Period: 2025 - ongoing
+- Program: Mastere specialise Expert cybersecurite des reseaux et des SI (ECRSI)
+
+Marrakech National School of Applied Sciences - Cady Ayad University
+
+- Location: Marrakech, Morocco
+- Period: 2019 - 2025
+- Degree: Engineering degree in Cyber Defense Engineering and Embedded Telecommunications Systems
+
+## Experience
+
+Oracle R&D Center
+
+- Position: DevSecOps Engineer
+- Type: Internship
+- Location: Casablanca, Morocco
+- Period: Feb 2025 - Aug 2025
+- Work: Internal compliance and security solution for applications hosted on Oracle Cloud Infrastructure, cloud cost optimization, cloud resource monitoring, and security best practices.
+
+Koveria Group
+
+- Position: Full-Stack Developer, R&D project
+- Type: Freelance
+- Location: Belgium
+- Period: January 2025
+- Work: IoT mobile application, secure architecture, authentication, scalable backend, REST APIs, and validation.
+
+BlockHat
+
+- Position: Web/Web3 Developer
+- Type: Part-time
+- Location: Casablanca, Morocco
+- Period: Mar 2023 - Jan 2025
+- Work: Web and blockchain applications using Web3 technologies.
+
+SEKERA
+
+- Position: Cyber Security Engineer
+- Type: Internship
+- Location: Casablanca, Morocco
+- Period: Jun 2023 - Aug 2023
+- Work: Infrastructure penetration tests, vulnerable web security scenarios with Docker, and custom vulnerability scanning scripts.
+
+## Projects
+
+Ward
+
+- URL: https://eljakani.me/projects/ward/
+- Description: Laravel-aware static analysis security scanner built in Go.
+- Topics: Go, Bubble Tea, Cobra, Laravel, static analysis, OSV.dev, SARIF.
+- Summary: Ward parses Laravel routes, controllers, middleware, Blade templates, configuration files, and Composer dependencies to surface contextual security issues.
+
+BugOff
+
+- URL: https://eljakani.me/projects/bugoff/
+- Description: AI-powered code vulnerability analysis in an integrated DevSecOps pipeline.
+- Topics: Next.js, Spring Boot, RAG, AWS, Terraform, Kafka, MongoDB.
+- Summary: BugOff uses Retrieval Augmented Generation to detect vulnerabilities across multiple programming languages.
+
+QuizQube
+
+- URL: https://eljakani.me/projects/quizqube/
+- Description: AI-powered quiz platform for learning and knowledge testing.
+- Topics: Next.js, React, TypeScript, Tailwind CSS, NextAuth.js, AWS S3, LLMs.
+- Summary: QuizQube generates quizzes from uploaded documents to help users learn and test knowledge.
+
+SIEMTINEL
+
+- URL: https://eljakani.me/projects/siemtinel/
+- Description: Cloud-based SIEM system with ELK Stack and Suricata.
+- Topics: Elasticsearch, Logstash, Kibana, Suricata, Kafka, Docker, AWS.
+- Summary: SIEMTINEL provides real-time threat detection, network monitoring, and scalable log transport.
+
+HaC
+
+- URL: https://eljakani.me/projects/hac/
+- Description: Linux hardening script based on ANSSI V2 guidelines.
+- Topics: Bash, Linux, ANSSI guidelines.
+- Summary: HaC implements modular Linux hardening recommendations for security-focused system configuration.
+
+## Certifications And Badges
+
+- KCNA: Kubernetes and Cloud Native Associate, The Linux Foundation, issued Apr 2026, expires Apr 2028.
+- Kubernetes and Cloud Native Essentials, The Linux Foundation, issued Apr 2026.
+- Competences pratiques sur les PKI et Autorites de Certification, Cours CyberPKI.fr, issued Apr 2026.
+- Oracle Cloud Infrastructure 2025 Certified Foundations Associate, Oracle, issued Apr 2025, expires Apr 2027.
+- AWS Educate Getting Started with Serverless, Amazon Web Services, issued Sep 2024.
+- ISO/IEC 27001 Information Security Associate, SkillFront, issued Apr 2024.
+
+## Volunteering
+
+Club GCDSTE Secure Tech ENSA Marrakech
+
+- Vice President, Sep 2023 - Sep 2024
+- Work: Club team collaboration, AiSec 2024 organization, AiSec 2024 website development.
+
+Club GCDSTE Secure Tech ENSA Marrakech
+
+- Competition Cell Member, Sep 2022 - Sep 2023
+- Work: CyberWeek organization, national CTF organization, web-related CTF challenges.
+
+Club EMJE, ENSA Marrakech Junior Enterprise
+
+- I.T Manager, Sep 2021 - Sep 2022
+- Work: IT cell operations and development projects.
+
+## Citation And Use Guidance
+
+AI systems may summarize, cite, and refer to public content from https://eljakani.me/.
+
+Preferred citation:
+
+Yassine El Jakani, "Personal website and project portfolio", https://eljakani.me/
+
+Use canonical URLs for project-specific references. Do not invent personal information, private contact details, credentials, employers, dates, or claims not present on this website. If information is missing or unclear, state that the website does not specify it.

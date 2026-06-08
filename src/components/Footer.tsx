@@ -10,11 +10,19 @@ interface SocialLink {
 
 const RearrangedCompactFooter: React.FC = () => {
     const [isVisible, setIsVisible] = useState(false);
+    const [phoneContact, setPhoneContact] = useState<{ href: string; label: string } | null>(null);
+    const visiblePhoneParts = ['+33', '7', '45', '94', '10', '29'];
 
     useEffect(() => {
         const toggleVisibility = () => {
             setIsVisible(window.pageYOffset > 300);
         };
+
+        const phoneParts = ['KzMz', 'Nw==', 'NDU=', 'OTQ=', 'MTA=', 'Mjk='].map((part) => window.atob(part));
+        setPhoneContact({
+            href: `tel:${phoneParts.join('')}`,
+            label: phoneParts.join(' '),
+        });
 
         window.addEventListener('scroll', toggleVisibility);
         return () => window.removeEventListener('scroll', toggleVisibility);
@@ -59,7 +67,13 @@ const RearrangedCompactFooter: React.FC = () => {
                             </div>
                             <div className="flex items-center justify-center md:justify-end">
                                 <Phone size={14} className="mr-1" />
-                                <a href="tel:+33751456937">+33 7 51 45 69 37</a>
+                                <a href={phoneContact?.href ?? '#'} aria-label="Call phone number">
+                                    <span className="inline-flex gap-1">
+                                        {visiblePhoneParts.map((part) => (
+                                            <span key={part}>{part}</span>
+                                        ))}
+                                    </span>
+                                </a>
                             </div>
                         </div>
                     </div>

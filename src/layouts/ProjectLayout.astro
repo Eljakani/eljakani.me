@@ -44,12 +44,32 @@ interface Frontmatter {
 
 const { frontmatter } = Astro.props;
 const metaDescription = frontmatter.description || frontmatter.overview || `Details about the ${frontmatter.name} project`;
+const siteUrl = "https://eljakani.me";
+const projectUrl = new URL(Astro.url.pathname, siteUrl).toString();
+const projectImage = frontmatter.image ? new URL(typeof frontmatter.image === 'string' ? frontmatter.image : frontmatter.image.src, siteUrl).toString() : undefined;
+const projectJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: frontmatter.name,
+    description: metaDescription,
+    url: projectUrl,
+    image: projectImage,
+    dateCreated: frontmatter.date,
+    creator: {
+        "@type": "Person",
+        name: "Yassine El Jakani",
+        url: siteUrl
+    },
+    keywords: frontmatter.tech?.join(", ")
+};
 ---
 
 <Layout
         title={`${frontmatter.name || 'Project'} | Yassine El Jakani`}
         description={metaDescription}
         image={frontmatter.image}
+        ogType="article"
+        jsonLd={projectJsonLd}
 >
     <article class="container mx-auto px-4 py-16 max-w-4xl">
         <Button variant="ghost" size="sm" asChild className="mb-8">

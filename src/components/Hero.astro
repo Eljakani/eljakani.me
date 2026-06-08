@@ -97,9 +97,14 @@ import { Badge } from "@/components/ui/badge"
                               <Icon name="lucide:mail" class="w-4 h-4 text-primary flex-shrink-0" />
                               <span class="text-sm text-foreground/80 font-alt truncate">eljakaniyassin@gmail.com</span>
                           </a>
-                          <a href="tel:+33751456937" class="flex items-center gap-3 p-3 bg-background border rounded-lg hover:bg-muted/50 transition-colors">
+                          <a
+                              id="phone-contact-link"
+                              href="#"
+                              class="flex items-center gap-3 p-3 bg-background border rounded-lg hover:bg-muted/50 transition-colors"
+                              aria-label="Call phone number"
+                          >
                               <Icon name="lucide:phone" class="w-4 h-4 text-primary flex-shrink-0" />
-                              <span class="text-sm text-foreground/80 font-alt">+33 7 51 45 69 37</span>
+                              <span id="phone-contact-text" class="text-sm text-foreground/80 font-alt">Phone</span>
                           </a>
                           <a href="https://linkedin.com/in/eljakaniyassine" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 bg-background border rounded-lg hover:bg-muted/50 transition-colors sm:col-span-2 lg:col-span-1">
                               <Icon name="lucide:linkedin" class="w-4 h-4 text-primary flex-shrink-0" />
@@ -118,6 +123,15 @@ import { Badge } from "@/components/ui/badge"
         const modal = document.getElementById('internship-modal');
         const modalContent = document.getElementById('modal-content');
         const closeButton = document.getElementById('close-modal');
+        const phoneLink = document.getElementById('phone-contact-link') as HTMLAnchorElement | null;
+        const phoneText = document.getElementById('phone-contact-text');
+
+        if (phoneLink && phoneText) {
+            const phoneParts = ['KzMz', 'Nw==', 'NDU=', 'OTQ=', 'MTA=', 'Mjk='].map((part) => window.atob(part));
+            const displayPhone = phoneParts.join(' ');
+            phoneLink.href = `tel:${phoneParts.join('')}`;
+            phoneText.textContent = displayPhone;
+        }
 
         function openModal() {
             if (modal) {
