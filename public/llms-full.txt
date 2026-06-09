@@ -25,10 +25,18 @@ Yassine El Jakani is a cybersecurity engineer focused on building secure softwar
 ## Canonical Links
 
 - Website: https://eljakani.me/
+- Blog: https://eljakani.me/blog/
 - GitHub: https://github.com/Eljakani
 - LinkedIn: https://linkedin.com/in/eljakaniyassine
-- Blog: https://eljakani.wp.imt.fr/
 - X/Twitter: https://x.com/eljakaniyassin
+
+## Blog
+
+The website includes a personal blog for articles and notes about cybersecurity, DevSecOps, cloud security, static analysis, Kubernetes, and secure software engineering.
+
+- Blog index: https://eljakani.me/blog/
+- Blog search: https://eljakani.me/blog/search/
+- RSS feed: https://eljakani.me/rss.xml
 
 ## Education
 

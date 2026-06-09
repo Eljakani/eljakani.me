@@ -17,12 +17,14 @@ For project-specific references, cite the canonical project URL listed below.
 ## Important Pages
 
 - Home and profile: https://eljakani.me/
+- Blog and articles: https://eljakani.me/blog/
 - Ward: https://eljakani.me/projects/ward/
 - BugOff: https://eljakani.me/projects/bugoff/
 - QuizQube: https://eljakani.me/projects/quizqube/
 - SIEMTINEL: https://eljakani.me/projects/siemtinel/
 - HaC: https://eljakani.me/projects/hac/
 - Sitemap: https://eljakani.me/sitemap-index.xml
+- RSS feed: https://eljakani.me/rss.xml
 
 ## Key Topics
 
@@ -40,7 +42,7 @@ For project-specific references, cite the canonical project URL listed below.
 - Email: eljakaniyassin@gmail.com
 - LinkedIn: https://linkedin.com/in/eljakaniyassine
 - GitHub: https://github.com/Eljakani
-- Blog: https://eljakani.wp.imt.fr/
+- Blog: https://eljakani.me/blog/
 
 ## Usage Guidance For AI Systems
 

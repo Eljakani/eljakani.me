@@ -1,0 +1,71 @@
+---
+title: "DevSecOps pipeline security lessons I keep reusing"
+description: "Practical patterns I keep coming back to when designing CI/CD pipelines with security checks that developers can live with."
+pubDate: 2026-04-12
+author: "Yassine El Jakani"
+image: "/og-image.jpg"
+tags: ["DevSecOps", "CI/CD", "Security Automation", "Cloud Security"]
+featured: false
+category: "devsecops"
+keywords: ["DevSecOps", "CI/CD security", "security gates", "cloud security"]
+difficulty: "intermediate"
+---
+
+Security checks in CI/CD are easy to add and hard to keep useful.
+
+The difference usually comes down to signal quality, developer feedback, and how much friction the pipeline introduces.
+
+## Start with visibility
+
+Before blocking builds, I prefer to add visibility:
+
+- dependency vulnerability reports
+- secret scanning
+- static analysis
+- container image scanning
+- infrastructure-as-code checks
+
+The first goal is to understand the baseline. Blocking everything from day one often creates alert fatigue before the team trusts the tooling.
+
+## Make severity explicit
+
+Every finding should answer a simple question: should this block a release?
+
+That usually means separating:
+
+- informational findings
+- low-risk cleanup
+- medium-risk issues to schedule
+- high-risk issues to fix before release
+- critical issues that should fail fast
+
+This structure makes security gates easier to defend.
+
+## Keep feedback close to developers
+
+Security output should appear where developers already work:
+
+- pull request comments
+- SARIF in code scanning
+- pipeline summaries
+- issue trackers for accepted backlog items
+
+A PDF report delivered after the sprint is not a workflow. It is a delay.
+
+## Design for exceptions
+
+Security gates need exceptions, but exceptions should be visible and intentional.
+
+Good exceptions have:
+
+- owner
+- reason
+- expiration date
+- linked issue
+- compensating control when needed
+
+That keeps the pipeline pragmatic without making it meaningless.
+
+## The practical rule
+
+The best DevSecOps pipeline is not the one with the most tools. It is the one that consistently catches meaningful risk while still letting teams ship.

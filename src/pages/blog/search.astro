@@ -1,0 +1,96 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer';
+
+const allPosts = await getCollection('blog');
+const searchData = allPosts.map((post) => ({
+  slug: post.id,
+  title: post.data.title,
+  description: post.data.description,
+  tags: post.data.tags,
+  category: post.data.category,
+  keywords: post.data.keywords,
+  date: post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+  content: (post.body ?? '').slice(0, 700),
+}));
+---
+
+<Layout title="Search Blog | Yassine El Jakani" description="Search articles and notes by Yassine El Jakani.">
+  <div class="container mx-auto px-4">
+    <Header />
+    <section class="py-16">
+      <a href="/blog" class="text-sm text-primary hover:underline">Back to blog</a>
+      <h1 class="mt-4 text-4xl font-bold text-foreground">Search Blog</h1>
+
+      <div class="relative mt-8">
+        <input
+          id="search-input"
+          type="search"
+          placeholder="Search by topic, tool, or keyword..."
+          class="w-full rounded-2xl border bg-background px-5 py-4 pr-12 text-lg outline-none transition-colors focus:border-primary"
+        />
+        <span class="absolute right-5 top-1/2 -translate-y-1/2 text-foreground/40">⌕</span>
+      </div>
+
+      <div class="mt-5 flex flex-wrap gap-2">
+        {['all', 'security', 'devsecops', 'cloud', 'engineering', 'notes'].map((category) => (
+          <button class="filter-btn rounded-full border px-4 py-2 text-sm capitalize transition-colors hover:bg-muted data-[active=true]:bg-primary data-[active=true]:text-primary-foreground" data-category={category} data-active={category === 'all' ? 'true' : 'false'}>
+            {category}
+          </button>
+        ))}
+      </div>
+
+      <div id="search-results" class="mt-10 grid gap-5 md:grid-cols-2"></div>
+      <div id="no-results" class="mt-10 hidden rounded-2xl border bg-muted/30 p-8 text-center text-foreground/70">
+        No articles found.
+      </div>
+    </section>
+    <Footer client:load />
+  </div>
+
+  <script is:inline define:vars={{ searchData }}>
+    const input = document.getElementById('search-input');
+    const results = document.getElementById('search-results');
+    const noResults = document.getElementById('no-results');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    let category = 'all';
+
+    function render(posts) {
+      if (!results || !noResults) return;
+      noResults.classList.toggle('hidden', posts.length > 0);
+      results.innerHTML = posts.map((post) => `
+        <a href="/blog/${post.slug}" class="block rounded-2xl border bg-background p-5 transition-colors hover:bg-muted/30">
+          <div class="mb-3 flex flex-wrap gap-2 text-xs text-foreground/60">
+            <span>${post.date}</span>
+            ${post.tags.slice(0, 2).map((tag) => `<span class="rounded-full bg-muted px-2 py-0.5">${tag}</span>`).join('')}
+          </div>
+          <h2 class="text-xl font-semibold text-foreground">${post.title}</h2>
+          <p class="mt-3 text-sm leading-relaxed text-foreground/70">${post.description}</p>
+        </a>
+      `).join('');
+    }
+
+    function search() {
+      const query = input?.value.toLowerCase().trim() ?? '';
+      const filtered = searchData.filter((post) => {
+        if (category !== 'all' && post.category !== category) return false;
+        if (!query) return true;
+        return `${post.title} ${post.description} ${post.tags.join(' ')} ${post.keywords.join(' ')} ${post.content}`.toLowerCase().includes(query);
+      });
+      render(filtered);
+    }
+
+    input?.addEventListener('input', search);
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        category = button.dataset.category ?? 'all';
+        filterButtons.forEach((item) => item.setAttribute('data-active', String(item === button)));
+        search();
+      });
+    });
+
+    search();
+  </script>
+</Layout>

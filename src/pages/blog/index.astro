@@ -1,0 +1,86 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer';
+import PostCard from '@/components/blog/PostCard.astro';
+import { sortPostsByDate, normalizeTag } from '@/utils/blog';
+
+const allPosts = sortPostsByDate(await getCollection('blog'));
+const featuredPost = allPosts.find((post) => post.data.featured) ?? allPosts[0];
+const posts = allPosts.filter((post) => post.id !== featuredPost?.id);
+const tags = Array.from(new Set(allPosts.flatMap((post) => post.data.tags))).slice(0, 10);
+const title = 'Blog | Yassine El Jakani';
+const description = 'Personal articles and notes about cybersecurity, DevSecOps, cloud security, static analysis, and secure software engineering.';
+---
+
+<Layout title={title} description={description}>
+  <div class="container mx-auto px-4">
+    <Header />
+
+    <section class="py-16">
+      <div class="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <div>
+          <p class="mb-3 text-sm font-semibold uppercase tracking-wide text-primary/70">Personal notes</p>
+          <h1 class="text-4xl font-bold text-foreground md:text-6xl">Blog</h1>
+          <p class="mt-4 max-w-2xl text-lg leading-relaxed text-foreground/75">
+            Articles, engineering notes, and security write-ups from my work across DevSecOps, cloud security, and secure software.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a href="/blog/search" class="inline-flex items-center rounded-full border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted">
+            Search posts
+          </a>
+          <a href="/rss.xml" class="inline-flex items-center rounded-full border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted">
+            RSS
+          </a>
+        </div>
+      </div>
+
+      {featuredPost && (
+        <a href={`/blog/${featuredPost.id}`} class="group mb-12 block overflow-hidden rounded-3xl border bg-gradient-to-br from-background to-muted/30 shadow-lg transition-all hover:border-primary/30 hover:shadow-xl">
+          <div class="grid gap-0 lg:grid-cols-[1.1fr_0.9fr]">
+            <img
+              src={featuredPost.data.image ?? '/og-image.jpg'}
+              alt={featuredPost.data.title}
+              class="h-full min-h-[18rem] w-full object-cover"
+              loading="eager"
+            />
+            <div class="flex flex-col justify-center p-6 md:p-8">
+              <span class="mb-4 w-fit rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">Featured</span>
+              <h2 class="text-3xl font-bold leading-tight text-foreground font-alt group-hover:text-primary md:text-4xl">
+                {featuredPost.data.title}
+              </h2>
+              <p class="mt-4 text-base leading-relaxed text-foreground/75">
+                {featuredPost.data.description}
+              </p>
+              <div class="mt-6 flex flex-wrap gap-2">
+                {featuredPost.data.tags.slice(0, 4).map((tag) => (
+                  <span class="rounded-full bg-muted px-3 py-1 text-xs text-foreground/70">{tag}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </a>
+      )}
+
+      {tags.length > 0 && (
+        <div class="mb-10 flex flex-wrap gap-2">
+          {tags.map((tag) => (
+            <a href={`/blog/tags/${normalizeTag(tag)}`} class="rounded-full border bg-background px-3 py-1.5 text-sm text-foreground/70 transition-colors hover:bg-primary hover:text-primary-foreground">
+              {tag}
+            </a>
+          ))}
+        </div>
+      )}
+
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {posts.map((post) => (
+          <PostCard post={post} />
+        ))}
+      </div>
+    </section>
+
+    <Footer client:load />
+  </div>
+</Layout>

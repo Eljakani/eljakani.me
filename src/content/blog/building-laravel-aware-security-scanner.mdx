@@ -1,0 +1,65 @@
+---
+title: "Building a Laravel-aware security scanner"
+description: "Notes from building Ward, a static analysis scanner that understands Laravel structure instead of relying on generic pattern matching."
+pubDate: 2026-05-20
+author: "Yassine El Jakani"
+image: "/projects/ward/ward_featured.png"
+tags: ["Static Analysis", "Laravel", "Security Automation", "Go"]
+featured: true
+category: "security"
+keywords: ["Laravel security scanner", "SAST", "static analysis", "Ward"]
+difficulty: "intermediate"
+---
+
+Most security scanners are useful, but many of them become noisy when they do not understand the framework they are scanning.
+
+That was the main reason I started building Ward: I wanted a scanner that treats Laravel applications as Laravel applications, not just as directories full of PHP files.
+
+## Why framework context matters
+
+Laravel security issues often depend on structure:
+
+- routes point to controllers
+- middleware changes access control
+- models expose mass assignment risk
+- Blade templates can shape XSS exposure
+- Composer dependencies carry CVEs
+- environment and config files reveal deployment posture
+
+A scanner that ignores those relationships can still find interesting strings, but it misses context.
+
+## How Ward approaches scanning
+
+Ward builds a project context before running checks. It parses routes, controllers, middleware, models, configuration files, `.env` content, Blade templates, and Composer metadata.
+
+That context is then shared across multiple scan engines:
+
+- environment scanner
+- configuration scanner
+- dependency scanner
+- rules scanner
+
+The goal is not to replace deeper manual review. The goal is to make automated pre-deployment checks more relevant for Laravel teams.
+
+## Keeping results useful
+
+The hardest part of security automation is not finding issues. It is finding issues that developers will actually act on.
+
+Ward focuses on:
+
+- severity levels
+- configurable thresholds
+- custom YAML rules
+- SARIF output for GitHub Code Scanning
+- headless CI usage
+- interactive terminal review with Bubble Tea
+
+That gives teams a way to start with a softer baseline and progressively tighten checks as their codebase matures.
+
+## What I learned
+
+Framework-aware static analysis is a balancing act. You need enough parsing to understand the application, but not so much runtime behavior that the tool becomes fragile or difficult to run.
+
+For Laravel, the useful middle ground is a typed project context that scanners can query without executing the application.
+
+That keeps Ward fast, portable, and useful inside CI/CD pipelines.

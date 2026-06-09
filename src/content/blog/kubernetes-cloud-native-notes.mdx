@@ -1,0 +1,74 @@
+---
+title: "Kubernetes and cloud native notes after KCNA prep"
+description: "A concise set of Kubernetes and cloud native concepts that became clearer while preparing for KCNA and related Linux Foundation material."
+pubDate: 2026-04-05
+author: "Yassine El Jakani"
+image: "/og-image.jpg"
+tags: ["Kubernetes", "Cloud Native", "Containers", "DevOps"]
+featured: false
+category: "cloud"
+keywords: ["KCNA", "Kubernetes", "cloud native", "containers"]
+difficulty: "beginner"
+---
+
+Preparing for KCNA helped me organize a lot of Kubernetes and cloud native concepts into a clearer mental model.
+
+This is a compact version of the notes I keep coming back to.
+
+## Kubernetes is an API-driven control plane
+
+Kubernetes is not just a container runner. It is an API-driven platform that continuously reconciles desired state with actual state.
+
+That idea explains a lot:
+
+- deployments describe desired replicas
+- controllers watch resources
+- the scheduler places pods
+- kubelet runs work on nodes
+- services provide stable networking
+
+## Containers are only one layer
+
+Containers package applications, but cloud native delivery also depends on:
+
+- orchestration
+- service discovery
+- configuration management
+- observability
+- policy
+- security controls
+- continuous delivery
+
+Kubernetes sits in the middle of that ecosystem.
+
+## Security starts with defaults
+
+The security posture of a Kubernetes workload depends heavily on defaults:
+
+- namespace boundaries
+- RBAC permissions
+- network policies
+- pod security settings
+- image provenance
+- secret handling
+- admission controls
+
+Small defaults can create large blast radius differences.
+
+## Observability is not optional
+
+If you cannot see workload behavior, you cannot operate it safely.
+
+Useful signals include:
+
+- metrics
+- logs
+- traces
+- events
+- audit logs
+
+Cloud native systems are dynamic, so troubleshooting depends on having those signals ready before incidents happen.
+
+## What stuck with me
+
+The cloud native ecosystem is broad, but the core idea is simple: define desired state, automate reconciliation, and design systems that can be observed, updated, and recovered reliably.

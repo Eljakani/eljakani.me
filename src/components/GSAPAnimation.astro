@@ -1,0 +1,27 @@
+---
+interface Props {
+  animation?: 'fadeUp' | 'fadeIn' | 'scaleIn' | 'slideLeft' | 'slideRight';
+  class?: string;
+  tag?: keyof HTMLElementTagNameMap;
+}
+
+const {
+  animation = 'fadeUp',
+  class: className = '',
+  tag: Tag = 'div'
+} = Astro.props;
+
+const animationClasses: Record<string, string> = {
+  fadeUp: 'gsap-fade-up',
+  fadeIn: 'gsap-fade-in',
+  scaleIn: 'gsap-scale-in',
+  slideLeft: 'gsap-slide-left',
+  slideRight: 'gsap-slide-right',
+};
+
+const animationClass = animationClasses[animation] || 'gsap-fade-up';
+---
+
+<Tag class:list={[animationClass, className]}>
+  <slot />
+</Tag>
